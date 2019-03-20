@@ -74,7 +74,19 @@ export default (WrappedComponent)=>{
 
     public render(){
 
-      const { iseducator, schoolid, token, route, Login, Logout, SelectSchool,schools, children,...ComponentProps } = this.props;
+      const { 
+        iseducator, 
+        schoolid, 
+        token, 
+        route,
+        Login,
+        Logout, 
+        SelectSchool,
+        schools, 
+        children,
+        ...ComponentProps 
+      } = this.props;
+
       const onLogout = ()=>Logout();
       const onSelectSchool = (schoolId:string)=>SelectSchool(schoolId);
       const navProps = {iseducator,onLogout};

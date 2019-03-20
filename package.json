@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jslswjf/Laputa-web#readme",
   "devDependencies": {
     "hashjs": "^1.2.0",
+    "qs": "^6.6.0",
     "react-cookies": "^0.1.0",
     "umi": "^2.6.2",
     "umi-plugin-react": "^1.7.0"

@@ -5,39 +5,52 @@ import api from '../services/api';
  * 课程
  */
 
+
 export default {
     namespace: 'course',
     state:{
         catalogue:null,
-        courses:{},
+        total:null,
+        items:null,
+        filter:{},
+        last:null,
         details:{}
     },
-    // effects: {
-    //     *GetCatalogue( _ , {call,put}){
-    //         const catalogue = yield call(api.course.catalogue);
-    //         yield put({ type: 'SetCatalogue', payload: catalogue });
-    //     },
-    //     *ListCourse({major,sub,pagecnt,userid}, {call,put}){
-    //         const courses = yield call(api.course.list, {major,sub,pagecnt,userid} );
-    //         const params = api.Params({major,sub,pagecnt,userid});
-    //         yield put({ type: 'SetCourses', payload: params, courses });
-    //     },
+    effects: {
+        *GetCatalogue( _ , {call,put}){
+            const catalogue = yield call(api.course.catalogue);
+            yield put({ type: 'SetCatalogue', payload: catalogue });
+        },
+        *ListCourse({payload : filter }, {call,put}){
+            const course = yield call(api.course.list, {filter} );
+            yield put({ type: 'SetItems', payload: filter,course });
+        },
+        *MoreItems({payload : last,filter }, {call,put}){
+            const items = yield call(api.course.more, {last,filter} );
+            yield put({ type: 'AppendItems', payload: items });
+        },
     //     *DetailCourse({courseid}, {call,put}){
     //         const detail = yield call(api.course.detail, {courseid});
     //         yield put({ type: 'SetDetails', payload: courseid, detail });
     //     },
-    // },
+    },
     reducers:{
         SetCatalogue(state,{payload:catalogue}) {
-            return {...state,catalogue}
+            return {...state,catalogue};
         },
-        SetCourses(state,{payload: params, courses }) {
-            state.course[params]=courses;
-            return {...state}
+        SetItems(state,{payload: filter,course }) {
+            const last = course.length?course.last():null;
+            return {...state, last, filter, ...course};
+        },
+        AppendItems(state,{payload: items }) {
+            return {...state, items:[...state.items,...items]};
+        },
+        ClearItems(state) {
+            return {...state, items:null};
         },
         SetDetails(state,{payload: courseid, detail }) {
             state.details[courseid]=detail;
-            return {...state}
+            return {...state};
         },
     }
 };

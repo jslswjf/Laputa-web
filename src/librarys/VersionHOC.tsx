@@ -27,9 +27,8 @@ export default (WrappedComponent) => {
         courseVersion:any,
         GetVersion:any,
         history:any,
-        location:any,
         match:any,
-        computedMatch:any
+        computedMatch:any,
     }>{
 
         public componentWillMount(){
@@ -40,7 +39,15 @@ export default (WrappedComponent) => {
   
         public render(){
 
-            const { history, location, match,computedMatch,...ComponentProps} = {...this.props} 
+            const {
+                majorVersion, 
+                courseVersion, 
+                GetVersion, 
+                history, 
+                match,
+                computedMatch,
+                ...ComponentProps
+            } = {...this.props} 
 
             return (<WrappedComponent {...ComponentProps} />);
         }

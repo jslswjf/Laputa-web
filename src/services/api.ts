@@ -1,5 +1,4 @@
 import request from '../utils/request';
-import api from './defs';
 
 export default {
     
@@ -20,8 +19,8 @@ export default {
     version : {
 
         get : (params)=>{
-            return request(api.version.get.url,{
-                method: api.version.get.method,
+            return request('/api/version/get',{
+                method: 'GET',
                 ...params
             });
         },
@@ -31,15 +30,15 @@ export default {
     session : {
 
         login : (params)=>{
-            return request(api.session.login.url,{
-                method: api.session.login.method,
+            return request('/api/session/login',{
+                method: 'POST',
                 ...params
             });
         },
 
         logout : (params)=>{
-            return request(api.session.logout.url,{
-                method: api.session.logout.method,
+            return request('/api/session/logout',{
+                method: 'DELETE',
                 ...params
             });
         },
@@ -49,14 +48,37 @@ export default {
     school : {
 
         select : (params)=>{
-            return request(api.school.select.url,{
-                method: api.school.select.method,
+            return request('/api/school/select',{
+                method: 'PUT',
                 ...params
             });
         },
 
     },
 
+    course : {
+        
+        catalogue : (params)=>{
+            return request('/api/course/catalogue',{
+                method: 'GET',
+                ...params
+            });
+        },
 
+        list : (params)=>{
+            return request('/api/course/list',{
+                method: 'GET',
+                ...params
+            });
+        },
+
+        more : (params)=>{
+            return request('/api/course/more',{
+                method: 'GET',
+                ...params
+            });
+        },
+
+    }
 
 };

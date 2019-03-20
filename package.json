@@ -1,0 +1,35 @@
+{
+  "name": "Laputa-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jslswjf/Laputa-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jslswjf/Laputa-web/issues"
+  },
+  "homepage": "https://github.com/jslswjf/Laputa-web#readme",
+  "devDependencies": {
+    "hashjs": "^1.2.0",
+    "react-cookies": "^0.1.0",
+    "umi": "^2.6.2",
+    "umi-plugin-react": "^1.7.0"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
+    "tslint": "^5.14.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^3.6.0"
+  }
+}

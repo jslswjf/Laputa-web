@@ -1,0 +1,100 @@
+@import url('./../../global.less');
+.bodyLogin{
+    height: 100%;
+    background:url("/images/home-bg.png");
+    background-size: 100% 100%;
+    .Logo{
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items:center ;
+        .platformLogo{
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background:url("/favicon.ico");
+        }
+        span{
+            width: 1px;
+            height: 30px;
+            background-color: #bababa;
+            display: inline-block;
+            margin: 0 16px;
+        }
+        .platformName{
+            display: inline-block;
+            font-size: 20px;
+            color: #000;
+            opacity: .45;
+        }
+    }
+    .AccountLogin{
+        width: 400px;
+        min-height: 400px;
+        margin: 150px auto 20px auto;
+        .AccountTab{
+            width: 100%;
+            margin-bottom: 50px;
+            padding:0;
+            li{
+                width: 200px;
+                border-bottom: 1px solid #ccc;
+                font-size: 20px;
+                color: RGBA(0,0,0,.45);
+                letter-spacing: 0;
+                line-height: 30px;
+                text-align: center;
+                padding-bottom: 11px;
+                cursor: pointer;
+                display: inline-block;
+            }
+            .Choice{
+                color: RGBA(0,0,0,.85);
+                border-bottom: 3px solid #000;
+            }
+        }
+        .Account,.password{
+            input{
+                width: 400px;
+                height: 48px;
+                margin-bottom: 20px;
+                border: 1px solid #d9d9d9;
+                border-radius: 4px;
+                text-indent: 16px;
+                font-size: 16px;
+                color: rgba(0,0,0,.45);
+                opacity: 0.85;
+                font-size: 16px;
+                color: #000000;
+                letter-spacing: 0;
+                line-height: 24px;
+                box-sizing: border-box;
+            
+            }
+            .errorMessage{
+                font-size: 14px;
+                color: #F04134;
+                letter-spacing: 0;
+                line-height: 22px;
+                position: relative;
+                top: -10px;
+                margin-bottom: 18px;
+                display: none;
+            }
+            .error{
+                border: 1px solid #F04134!important;
+                box-shadow: 0 0 0 2px rgba(240,65,52,0.25)!important;
+            }
+        }
+        .SignIn{
+            background-color: #00B8EE;
+            color: #fff;
+            line-height: 48px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+        }
+    }
+}

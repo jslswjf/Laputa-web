@@ -79,6 +79,16 @@ export default {
             });
         },
 
+    },
+
+    scene : {
+        get : (params)=>{
+            return request('/api/scene/get',{
+                method: 'GET',
+                ...params
+            });
+        },
+        
     }
 
 };

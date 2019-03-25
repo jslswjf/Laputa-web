@@ -1,1 +1,53 @@
-@theme-color:rgb(123,234,345);
+@theme-color:#00B8EE;
+body{
+    margin: 0;
+}
+.g_Width{
+    background: @theme-color;
+    .Logo{
+        display: flex;
+        align-items:center ;
+        width: 1200px;
+        margin: 0 auto;
+        .platformLogo{
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background:url("/favicon.ico");
+        }
+        span{
+            width: 1px;
+            height: 30px;
+            background-color: #bababa;
+            display: inline-block;
+            margin: 0 16px;
+        }
+        .platformName{
+            display: inline-block;
+            font-size: 22px;
+            color: #fff;
+            font-weight: 1000;
+        }
+        .g_nav{
+            margin-left: 50px;
+            a{
+                margin-right: 20px;
+                padding: 5px 16px;
+                border-radius: 30px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                color:#fff;
+                text-decoration:none;
+            }
+            a:hover{
+                background: #fff;
+                color: @theme-color;
+                text-decoration: none;
+                -o-transition: background 0.1s ease-in-out 0s;
+                -webkit-transition: background 0.1s ease-in-out 0s;
+                transition: background 0.1s ease-in-out 0s;
+            }
+        }
+    }
+    
+}

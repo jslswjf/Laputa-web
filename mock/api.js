@@ -109,7 +109,7 @@ let userInfo = {
   thumbnail: '/favicon.ico',
   iseducator: (Math.random()>0.5),
   schoolid: null,
-  schools:[ {id:0,name:'稼轩'}, {id:1,name:'二中'} ]
+  schools:[ {id:0,name:'稼轩',logo:'/favicon.ico'}, {id:1,name:'二中',logo:'/favicon.ico'} ]
 }
 
 const BadTokenRes = (req,res)=>{

@@ -45,7 +45,17 @@ class Course extends React.Component<{
         } = {...this.props};
 
         return (<div>
-            
+            <div>
+                <p>创客主站</p>
+                <ul>
+                    <li>课程</li>
+                    <li>发现</li>
+                    <li>学校</li>
+                    <li>年级</li>
+                    <li>班级</li>
+                    <li>创作</li>
+                </ul>
+            </div>
             {catalogue&&catalogue.major&&catalogue.major.length>0?(
                 <ul>
                     {catalogue.major.map((major,key)=>(

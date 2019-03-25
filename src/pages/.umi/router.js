@@ -43,7 +43,7 @@ let routes = [
     "exact": true
   },
   {
-    "component": () => React.createElement(require('/mnt/e/Laputa-web/node_modules/_umi-build-dev@1.7.0@umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
+    "component": () => React.createElement(require('/mnt/d/linux_code/Laputa-web/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/pages', hasRoutesInConfig: true })
   }
 ];
 window.g_routes = routes;

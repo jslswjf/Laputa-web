@@ -14,6 +14,6 @@ app.use(createLoading());
   app.use(plugin);
 });
 
-app.model({ namespace: 'course', ...(require('/mnt/e/Laputa-web/src/models/course.ts').default) });
-app.model({ namespace: 'session', ...(require('/mnt/e/Laputa-web/src/models/session.ts').default) });
-app.model({ namespace: 'version', ...(require('/mnt/e/Laputa-web/src/models/version.ts').default) });
+app.model({ namespace: 'course', ...(require('/mnt/d/linux_code/Laputa-web/src/models/course.ts').default) });
+app.model({ namespace: 'session', ...(require('/mnt/d/linux_code/Laputa-web/src/models/session.ts').default) });
+app.model({ namespace: 'version', ...(require('/mnt/d/linux_code/Laputa-web/src/models/version.ts').default) });

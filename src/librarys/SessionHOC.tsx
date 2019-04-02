@@ -54,6 +54,7 @@ export default (WrappedComponent)=>{
   const PagesInnerNav = [
     '/classroom',
     '/dashboard',
+    '/scene'
   ];
 
   @connect(mapStateToProps, mapDispatchToProps)

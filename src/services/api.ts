@@ -82,8 +82,14 @@ export default {
     },
 
     scene : {
-        get : (params)=>{
-            return request('/api/scene/get',{
+        init : (params)=>{
+            return request('/api/scene/init',{
+                method: 'GET',
+                ...params
+            });
+        },
+        item : (params)=>{
+            return request('/api/scene/item',{
                 method: 'GET',
                 ...params
             });

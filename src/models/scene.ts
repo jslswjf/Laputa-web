@@ -2,32 +2,51 @@
 import api from '../services/api';
 
 /**
- * 场景设置
+ * 游戏内容
  */
 export default {
     namespace: 'scene',
     state:{
-        resoursepath:null,
-        title:null,
-        tasks:null,
-        taskid:0,
-        stepid:0
+        info:null,
+        objects:null,
+        scenes:null,
+        sceneid:null,
+        stepid:null,
     },
     effects: {
-        *GetScene(payload, {call,put}){
-            const scene = yield call(api.scene.get, payload );
-            yield put({ type: 'SetScene', payload: scene });
+        *InitScene({}, {call,put}){
+            const state = yield call(api.scene.init, {} );
+            yield put({ type: 'SetScene', payload: state });
+        },
+        *GetScene({sceneid}, {call,put}){
+            const scene = yield call(api.scene.item, {sceneid} );
+            yield put({ type: 'AppendScene', payload: sceneid, scene });
         }
     },
     reducers:{
-        SetScene(_,{payload:scene}) {
-            return {..._,...scene}
+        SetScene(_,{payload:state}) {
+            return {..._,...state}
         },
-        SetTask(_,{payload:taskid}) {
-            return {..._,stepid:0,taskid}
+        AppendScene(state,{payload:sceneid,scene}) {
+            const _ = {...state};
+            if (_.scenes.length > sceneid){
+                _.scenes[sceneid] = scene;
+            }else if(_.scenes.length === sceneid){
+                _.scenes.push(scene);
+            }else{
+                let jmp = sceneid - _.scenes.length;
+                while(jmp--){
+                    _.scenes.push(null);
+                }
+                _.scenes.push(scene);
+            }
+            return _
         },
-        SetStep(_,{payload:stepid}) {
-            return {..._,stepid}
+        SetSceneId(state,{payload:sceneid}) {
+            return {...state,stepid:0,sceneid}
+        },
+        SetStepId(state,{payload:stepid}) {
+            return {...state,stepid}
         },
     }
 };

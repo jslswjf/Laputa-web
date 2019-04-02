@@ -5,8 +5,8 @@ export default {
         }],
       ],
     routes: [{
-      path: '/',
-      component: './scene/alita',
+      path: '/scene',
+      component: './scene',
     },{
       path: '/course',
       component: './course',

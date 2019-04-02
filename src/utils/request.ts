@@ -32,6 +32,10 @@ function checkStatus(response) {
       cookie.remove('state/session/user');
       window.location.reload();
     }
+    if(response.status===404){
+      router.push('/404');
+      window.location.reload();
+    }
     
     checkStatus(response);
     return response.json();

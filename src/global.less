@@ -1,1 +1,13 @@
 @theme-color:rgb(123,234,345);
+
+:global{
+    @keyframes TurntableAnimation {
+        0%{ transform:rotate(0deg); }
+        100%{ transform:rotate(360deg); }
+    }
+    @keyframes ReciprocatingAnimation {
+        0%{ transform:rotate(-30deg); }
+        50%{ transform:rotate(10deg); }
+        100%{ transform:rotate(-30deg); }
+    }
+}

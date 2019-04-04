@@ -16,24 +16,82 @@ export default (WrappedComponent) => {
         const sceneInfo = sceneid < maxSceneId &&
                             scenes && scenes[sceneid] &&
                             scenes[sceneid].info;
+        
+        const nxtSceneInfo = sceneid+1 < maxSceneId &&
+                            scenes && scenes[sceneid+1] &&
+                            scenes[sceneid+1].info;
 
         const sceneObjects = sceneid < maxSceneId &&
                             scenes && scenes[sceneid] &&
                             scenes[sceneid].objects;
 
-        const stepsObjects = {...objects, ...sceneObjects};
+        const sceneAllObjects = {...objects};
+        if(sceneObjects){
+            Object.keys(sceneObjects).map(objkey=>{
+                if(sceneObjects[objkey]){
+                    
+                    if(sceneAllObjects[objkey]){
+                        Object.keys(sceneObjects[objkey]).map(propskey=>{
+                            if(sceneAllObjects[objkey][propskey] && !(sceneAllObjects[objkey][propskey] instanceof Array) && (sceneAllObjects[objkey][propskey] instanceof Object)){
+                                sceneAllObjects[objkey][propskey] = 
+                                    (sceneAllObjects[objkey][propskey] 
+                                    && {...sceneAllObjects[objkey][propskey],...sceneObjects[objkey][propskey]})
+                                    || {...sceneObjects[objkey][propskey]}
+                            }else{
+                                sceneAllObjects[objkey][propskey] =
+                                    typeof sceneObjects[objkey][propskey] === 'object' ?
+                                    {...sceneObjects[objkey][propskey]}:
+                                    sceneObjects[objkey][propskey]
+                            }
 
+                        })
+                    }else{
+                        sceneAllObjects[objkey] = {...sceneObjects[objkey]}
+                    }
+                }
+            })
+        }
 
 
         const steps =   sceneid < maxSceneId &&
                             scenes && scenes[sceneid] &&
                             scenes[sceneid].steps && scenes[sceneid].steps.slice(0,stepid+1);
 
+        const stepObjects = [];
+        if(steps){
+            let curstepobjectsstatus = {};
+    
+            for(let i=0; i<=stepid; ++i ){
+                curstepobjectsstatus = {...curstepobjectsstatus,...steps[i].objects}
+            }
+    
+            for(const key in curstepobjectsstatus){
+                if(curstepobjectsstatus[key].appear){
+                    const tmp = {...curstepobjectsstatus[key]}
+                    if(sceneAllObjects[key]){
+                        Object.keys(sceneAllObjects[key]).map(propskey=>{
+                            if(!(sceneAllObjects[key][propskey] instanceof Array)&&(sceneAllObjects[key][propskey] instanceof Object)){
+                                tmp[propskey] = 
+                                    (tmp[propskey] 
+                                    && {...sceneAllObjects[key][propskey],...tmp[propskey]})
+                                    || {...sceneAllObjects[key][propskey]}
+                            }else{
+                                tmp[propskey] = tmp[propskey] || sceneAllObjects[key][propskey]
+                            }
+                        })
+                    }
+                    stepObjects.push(tmp);
+                }
+            }
+        }
+
         const scenescount = info && info.scenescount;
         const stepcount = sceneInfo && sceneInfo.stepcount;
 
         return {
-            stepsObjects,
+            sceneAllObjects,
+            stepObjects,
+            nxtSceneInfo,
             scriptInfo:info,
             sceneInfo,
             steps,
@@ -78,9 +136,11 @@ export default (WrappedComponent) => {
 
     @connect(mapStateToProps, mapDispatchToProps)
     class SceneWrapper extends React.Component<{
-        stepsObjects:any,
+        sceneAllObjects:any,
+        stepObjects:any,
         scriptInfo:any,
         sceneInfo:any,
+        nxtSceneInfo:any,
         steps:any,
         sceneid:number,
         stepid:number,
@@ -103,12 +163,16 @@ export default (WrappedComponent) => {
             if(!this.props.sceneInfo && (prevProps.sceneid !== this.props.sceneid) && (this.props.scenescount-1>=this.props.sceneid)){
                 this.props.GetScene(this.props.sceneid);
             }
+            if(!this.props.nxtSceneInfo&& (prevProps.sceneid !== this.props.sceneid) &&this.props.scenescount-1>=(this.props.sceneid+1)){
+                this.props.GetScene(this.props.sceneid+1);
+            }
         }
   
         public render(){
 
             const {
-                stepsObjects,
+                sceneAllObjects,
+                stepObjects,
                 scriptInfo,
                 sceneInfo,
                 steps,
@@ -133,15 +197,10 @@ export default (WrappedComponent) => {
                 return (<div>TODO: 游戏加载错误...</div>);
             }
 
-            let objects = {};
-
-            for(let i=0; i<=stepid; ++i ){
-                objects = {...objects,...steps[i].objects}
-            }
 
             const SceneProps = {
-                objects,
-                objectsInfo:stepsObjects,
+                sceneObjects:sceneAllObjects,
+                stepObjects,
                 scriptInfo,
                 sceneInfo,
                 stepInfo:steps[stepid].info,

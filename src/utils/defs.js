@@ -4,5 +4,6 @@ export default {
     ObjectElem : '/scene/type/objectelem',
     DragExam: '/scene/type/dragexam',
     GroupElem: '/scene/type/groupelem',
-    StepsElem: '/scene/type/stepselem',
+    ClickElem: '/scene/type/clickelem',
+    ToSpace: '/scene/type/tospace',
 }

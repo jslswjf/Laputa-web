@@ -1,27 +1,33 @@
 import * as React from 'react';
 import contentType from '../../utils/defs';
+import ClickComponent from './click';
 import DragComponent from './drag';
 import GroupComponent from './group';
 import ObjectComponent from './object';
-import StepsComponent from './steps';
 import TextComponent from './text';
+import ToSpaceComponent from './tospace';
 
 
 export default class ParseScene extends React.Component<{
     elem:any,
     renderInfo:any,
     key:any,
-    objectsInfo:any,
+    sceneObjects:any,
     finished:boolean,
     OnNextStep:any
   }>{
 
     public render(){
 
-        const {elem,renderInfo,key,objectsInfo,finished,OnNextStep} = {...this.props};
+
+        const {elem,renderInfo,key,sceneObjects,finished,OnNextStep,...ComponentProps} = {...this.props};
         
-        const signrenderInfo = {...renderInfo,key,elem,finished}
-        const comprenderInfo = {...signrenderInfo,objectsInfo,OnNextStep}
+        if(!elem){
+            return null;
+        }
+        
+        const signrenderInfo = {...renderInfo,key,elem,finished,...ComponentProps}
+        const comprenderInfo = {...signrenderInfo,sceneObjects,OnNextStep}
 
         if(elem.type === contentType.TextElem){
             return <TextComponent  {...signrenderInfo} />;
@@ -36,8 +42,12 @@ export default class ParseScene extends React.Component<{
             return <GroupComponent {...comprenderInfo} />;
         }
         if(elem.type === contentType.StepsElem){
-            return <StepsComponent {...signrenderInfo} />;
+            return <ToSpaceComponent {...signrenderInfo} />;
         }
+        if(elem.type === contentType.ClickElem){
+            return <ClickComponent {...comprenderInfo} />;
+        }
+        
         
         return null;
     }

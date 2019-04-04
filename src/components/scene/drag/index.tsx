@@ -5,7 +5,7 @@ import styles from './index.less';
 
 export default class DragComponent extends React.Component<{
   elem:any,
-  objectsInfo:any,
+  sceneObjects:any,
   OnNextStep:any,
   finished:boolean,
 },{
@@ -39,7 +39,7 @@ export default class DragComponent extends React.Component<{
 
   public render(){
 
-    const { elem , objectsInfo,OnNextStep,finished} = {...this.props };
+    const { elem , sceneObjects,OnNextStep,finished} = {...this.props };
 
     return <div style={elem.style} onDragOver={()=>this.over(-1)} onClick={
       ()=>{if(!this.state.dragedList.filter(x=>!x).length&&!finished){OnNextStep()}}
@@ -52,12 +52,12 @@ export default class DragComponent extends React.Component<{
         }
         
         return <ParseScene {...{
-          elem:objectsInfo[obj.source],
+          elem:sceneObjects[obj.source],
           renderInfo:{
             draggable:true,
             onDragStart:()=>this.drag(i)
           },
-          objectsInfo,
+          sceneObjects,
           finished,
           OnNextStep }
         } key={i}/>;
@@ -65,7 +65,7 @@ export default class DragComponent extends React.Component<{
       })}
       {elem.objects.map((obj,i)=>{
 
-        const child = objectsInfo[obj.source];
+        const child = sceneObjects[obj.source];
         let style = {...child.style,...obj.target.style};
         
         if(!this.state.dragedList[i]){
@@ -79,7 +79,7 @@ export default class DragComponent extends React.Component<{
             onDrop:()=>this.drop(i),
             onDragOver:()=>this.over(i)
           },
-          objectsInfo,
+          sceneObjects,
           finished,
           OnNextStep }
         } key={i}/>;
@@ -92,11 +92,11 @@ export default class DragComponent extends React.Component<{
         }
 
         return <ParseScene {...{
-          elem:objectsInfo[obj.explain],
+          elem:sceneObjects[obj.explain],
           renderInfo:{
             draggable:false
           },
-          objectsInfo,
+          sceneObjects,
           finished,
           OnNextStep }
         } key={i}/>;

@@ -9,10 +9,10 @@ import styles from './index.less';
 
 
 class Scene extends React.Component<{
+    sceneObjects:any,
     scriptInfo:any,
     sceneInfo:any,
-    objects:any,
-    objectsInfo:any,
+    stepObjects:any,
     stepInfo:any,
     OnNextStep: any,
 },{
@@ -38,25 +38,18 @@ class Scene extends React.Component<{
     public frontScene(){
 
         const {
-            objects,
-            objectsInfo, 
+            stepObjects, 
+            sceneObjects,
             OnNextStep
         } = {...this.props};
 
-        const elements = [];
-        for(const key in objects){
-            if(objects[key].appear){
-                objectsInfo[key].style = {...objectsInfo[key].style,...objects[key].style};
-                elements.push(objectsInfo[key]);
-            }
-        }
 
-        return elements.map((elem,i)=>{
+        return stepObjects.map((elem,i)=>{
             return <ParseScene {...{
                 elem,
                 renderInfo:{},
-                objectsInfo,
-                finished:elements.length > i+1 }
+                sceneObjects,
+                finished:stepObjects.length > i+1 }
             } key={i} OnNextStep={OnNextStep}/>;
         })
 
@@ -84,11 +77,10 @@ class Scene extends React.Component<{
                 :setTimeout(()=>this.setState({cannext:true}),stepInfo.timeout)
 
         }
-        
 
         return (<div
             className={styles.scene}
-            style={{background:sceneInfo.background}}
+            style={sceneInfo.style}
             onClick = { ()=>{
                             if(this.state.cannext){
                                 this.Next()

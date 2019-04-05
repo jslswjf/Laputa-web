@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ParseScene from '../ParseScene';
+import ParseScene from '../parse';
 import styles from './index.less';
 
 export default class ClickComponent extends React.Component<{

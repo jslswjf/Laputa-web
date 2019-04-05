@@ -22,12 +22,11 @@ function checkStatus(response) {
   export default async function request(url, options) {
     
     const session = cookie.load('state/session/user');
-    if(session&&session.token) {
-      options.headers = {...( options.headers || {}),token:session.token}
-    }
-    const response = await fetch(url, options);
+    const {headers,...args} = options;
+    const response = session&&session.token 
+      ? await fetch(url, {...args,headers:new Headers({...( options.headers || {}),token:session.token})})
+      : await fetch(url, {...args,headers:new Headers(headers)});
     
-
     if(response.status===401){
       cookie.remove('state/session/user');
       window.location.reload();

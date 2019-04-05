@@ -30,15 +30,37 @@ export default {
     },
   
     'GET /api/scene/item' : (req, res)=>{
-  
+
       setTimeout(() => {
-        if(status.sceneid < 0 && status.sceneid >= script.scenescount-1){
+        const sceneid = Number(req.query.sceneid);
+        if(sceneid < 0 || sceneid >= script.scenescount-1){
             res.sendStatus(404);
         }else{
-            status.sceneid = status.sceneid + 1;
-            res.json(script.scenes[status.sceneid]);
+            res.json(script.scenes[sceneid]);
         }
       }, 3000);
   
     },
+
+    'PUT /api/scene/process' : (req, res)=>{
+
+      setTimeout(() => {
+        if(req.body.sceneid<status.sceneid){
+            status.sceneid =  Math.min(req.body.sceneid, script.info.scenescount-1);
+            status.stepid = Math.min(req.body.stepid, script.scenes[status.sceneid].info.stepcount-1);
+        }else if(req.body.sceneid===status.sceneid){
+            status.sceneid =  Math.min(req.body.sceneid, script.info.scenescount-1);
+            status.stepid = Math.min(status.stepid+1, req.body.stepid, script.scenes[status.sceneid].info.stepcount-1);
+        }else if(req.body.sceneid===status.sceneid+1){
+            status.sceneid =  Math.min(req.body.sceneid, script.info.scenescount-1);
+            status.stepid = 0;
+        }else{
+            res.sendStatus(404);
+            return;
+        }
+        res.json({...status});
+      }, 3000);
+  
+    },
+
 }

@@ -131,6 +131,13 @@ export default (WrappedComponent) => {
                 };
                 dispatch(action);
             },
+            SceneProcess : (sceneid,stepid) => {
+                const action = {
+                    type: `scene/SceneProcess`,
+                    payload:sceneid,stepid
+                };
+                dispatch(action);
+            }
         };
     };
 
@@ -150,6 +157,7 @@ export default (WrappedComponent) => {
         GetScene:any,
         SetSceneId:any,
         SetStepId:any,
+        SceneProcess:any,
     }>{
 
         public componentWillMount(){
@@ -159,6 +167,11 @@ export default (WrappedComponent) => {
         }
 
         public componentDidUpdate(prevProps){
+
+            if(prevProps.sceneid !== this.props.sceneid || prevProps.stepid !== this.props.stepid)
+            {
+                this.props.SceneProcess(this.props.sceneid,this.props.stepid);
+            }
             
             if(!this.props.sceneInfo && (prevProps.sceneid !== this.props.sceneid) && (this.props.scenescount-1>=this.props.sceneid)){
                 this.props.GetScene(this.props.sceneid);
@@ -196,7 +209,6 @@ export default (WrappedComponent) => {
             if(!stepcount || !scenescount){
                 return (<div>TODO: 游戏加载错误...</div>);
             }
-
 
             const SceneProps = {
                 sceneObjects:sceneAllObjects,

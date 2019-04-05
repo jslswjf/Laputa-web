@@ -10,7 +10,7 @@ export default {
     },
     effects: {
         *GetVersion(payload, {call,put}){
-            const version = yield call(api.version.get, payload );
+            const version = yield call(api.version.get, {} );
             yield put({ type: 'SetVersion', payload: version });
         }
     },

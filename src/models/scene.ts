@@ -18,10 +18,13 @@ export default {
             const state = yield call(api.scene.init, {} );
             yield put({ type: 'SetScene', payload: state });
         },
-        *GetScene({sceneid}, {call,put}){
+        *GetScene({payload:sceneid}, {call,put}){
             const scene = yield call(api.scene.item, {sceneid} );
             yield put({ type: 'AppendScene', payload: sceneid, scene });
-        }
+        },
+        *SceneProcess({payload:sceneid,stepid}, {call}){
+            yield call(api.scene.process, {sceneid,stepid} );
+        },
     },
     reducers:{
         SetScene(_,{payload:state}) {

@@ -29,7 +29,7 @@ const session = {
       yield put({ type: 'SetSession', payload: user });
     },
     *logout( _, { call, put }) {
-      yield call(api.session.logout, {});
+      yield call(api.session.logout, {body:{}});
       yield put({ type: 'ClearSession' });
     },
     *selectschool( {payload:schoolid}, { call, put }) {

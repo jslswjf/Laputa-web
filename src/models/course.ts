@@ -49,8 +49,9 @@ export default {
             return {...state, items:null};
         },
         SetDetails(state,{payload: courseid, detail }) {
-            state.details[courseid]=detail;
-            return {...state};
+            const newstate = {...state}
+            newstate.details[courseid]=detail;
+            return newstate;
         },
     }
 };

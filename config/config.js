@@ -5,6 +5,9 @@ export default {
         }],
       ],
     routes: [{
+      path: '/scene',
+      component: './scene',
+    },{
       path: '/course',
       component: './course',
     },{

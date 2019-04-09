@@ -1,12 +1,10 @@
 
 import script from '../src/utils/sykcj';
 
-
 const status = {
     sceneid:0,
     stepid:0
 }
-
 
 script.info.scenescount = script.scenes.length;
 script.scenes.map((scene,i)=>{

@@ -35,7 +35,6 @@ const loadimgs = (imgs)=>{
     return objects;
 }
 
-
 const soliloquy2object = (soliloquy)=>{
     return {
         type:contentType.TextElem,
@@ -69,7 +68,7 @@ export default {
         ]),
         ...loadsoliloquys([
             ['学习目标',        '学习石油开采机的结构，了解其工作原理。\n学习平台四杆机构，了解运动副的概念及其类型。\n学习平台四杆机构的类型，了解其结构特点。\n通过搭建石油开采机的模型，掌握平面四杆机构的联动方式。'],
-            ['注意事项',        '请注意观察动图！\n每一关的动图！'],
+            ['注意事项',        '请注意观察动图！'],
             ['开场',            '呃......头好疼\n这是哪里？我是谁？\n地上是什么?'],
             ['读信后',          '我是首席机械师？有点想不起来了...\n他们很着急，可是石油开采机怎么做呢？\n去书房里找找有没有什么资料。'],
             ['观察图纸',        '好像缺了什么？\n在脑海中复现一下吧'],
@@ -821,7 +820,6 @@ export default {
                     },
                     members:{
                         '平面四杆机构概念':{
-                            steps:['平面四杆机构概念'],
                             style:{
                                 top:'0px',
                                 left:'50%',
@@ -841,7 +839,6 @@ export default {
                             },
                         },
                         '曲柄连杆机构组合':{
-                            steps:['曲柄连杆机构组合'],
                             style:{
                                 top:'-100px',
                                 left:'50%',
@@ -861,7 +858,6 @@ export default {
                             },
                         },
                         '双曲柄机构组合':{
-                            steps:['双曲柄机构组合'],
                             style:{
                                 top:'-100px',
                                 left:'50%',
@@ -881,7 +877,6 @@ export default {
                             },
                         },
                         '平行双曲柄机构组合':{
-                            steps:['平行双曲柄机构组合'],
                             style:{
                                 top:'-100px',
                                 left:'50%',
@@ -901,7 +896,6 @@ export default {
                             },
                         },
                         '反向双曲柄机构组合':{
-                            steps:['反向双曲柄机构组合'],
                             style:{
                                 top:'-100px',
                                 left:'50%',
@@ -920,201 +914,6 @@ export default {
                                 },
                             },
                         },
-                    },
-                },
-                '平面四杆机构习题':{
-
-                    type:contentType.DragExam,
-                    objects:[
-                        {
-                            source:'曲柄机构',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'360px 0px 0px -270px',
-                                    width:'140px',
-                                },
-                                hide:{
-                                    opacity:0.01
-                                }
-                            },
-                            explain:'曲柄机构？？'
-                        },
-                        {
-                            source:'连杆机构组合',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'199px 0 0 -295px',
-                                    width:'320px',
-                                },
-                                hide:{
-                                    opacity:0.01,
-                                    height: '100px',
-                                    overflow:'hidden'
-                                }
-                            },
-                            explain:'连杆机构？？'
-                        },
-                    ],
-                    style:{
-
-                    },
-                },
-                '曲柄连杆机构习题':{
-                    
-                    type:contentType.DragExam,
-                    objects:[
-                        {
-                            source:'曲柄机构',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'360px 0px 0px -270px',
-                                    width:'140px',
-                                },
-                                hide:{
-                                    opacity:0.01
-                                }
-                            },
-                            explain:'曲柄机构？？'
-                        },
-                        {
-                            source:'连杆机构组合',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'199px 0 0 -295px',
-                                    width:'320px',
-                                },
-                                hide:{
-                                    opacity:0.01,
-                                    height: '100px',
-                                    overflow:'hidden'
-                                }
-                            },
-                            explain:'连杆机构？？'
-                        },
-                    ],
-                    style:{
-
-                    },
-                },
-                '双曲柄机构组习题':{
-                    
-                    type:contentType.DragExam,
-                    objects:[
-                        {
-                            source:'曲柄机构',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'360px 0px 0px -270px',
-                                    width:'140px',
-                                },
-                                hide:{
-                                    opacity:0.01
-                                }
-                            },
-                            explain:'曲柄机构？？'
-                        },
-                        {
-                            source:'连杆机构组合',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'199px 0 0 -295px',
-                                    width:'320px',
-                                },
-                                hide:{
-                                    opacity:0.01,
-                                    height: '100px',
-                                    overflow:'hidden'
-                                }
-                            },
-                            explain:'连杆机构？？'
-                        },
-                    ],
-                    style:{
-
-                    },
-                },
-                '平行双曲柄机构习题':{
-                    
-                    type:contentType.DragExam,
-                    objects:[
-                        {
-                            source:'曲柄机构',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'360px 0px 0px -270px',
-                                    width:'140px',
-                                },
-                                hide:{
-                                    opacity:0.01
-                                }
-                            },
-                            explain:'曲柄机构？？'
-                        },
-                        {
-                            source:'连杆机构组合',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'199px 0 0 -295px',
-                                    width:'320px',
-                                },
-                                hide:{
-                                    opacity:0.01,
-                                    height: '100px',
-                                    overflow:'hidden'
-                                }
-                            },
-                            explain:'连杆机构？？'
-                        },
-                    ],
-                    style:{
-
-                    },
-                },
-                '反向双曲柄机构习题':{
-                    
-                    type:contentType.DragExam,
-                    objects:[
-                        {
-                            source:'曲柄机构',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'360px 0px 0px -270px',
-                                    width:'140px',
-                                },
-                                hide:{
-                                    opacity:0.01
-                                }
-                            },
-                            explain:'曲柄机构？？'
-                        },
-                        {
-                            source:'连杆机构组合',
-                            target:{
-                                style:{
-                                    top:'10%',
-                                    margin:'199px 0 0 -295px',
-                                    width:'320px',
-                                },
-                                hide:{
-                                    opacity:0.01,
-                                    height: '100px',
-                                    overflow:'hidden'
-                                }
-                            },
-                            explain:'连杆机构？？'
-                        },
-                    ],
-                    style:{
-
                     },
                 },
             },
@@ -1143,73 +942,6 @@ export default {
                             },
                             appear:true,
                         },
-                    },
-                    children:{
-                        '平面四杆机构概念':[
-                            {
-                                objects:{
-                                    '平面四杆机构习题':{
-                                        style:{
-                                        },
-                                        appear:true,
-                                    },
-                                },
-                                info:{
-                                }
-                            },
-                        ],
-                        '曲柄连杆机构组合':[
-                            {
-                                objects:{
-                                    '曲柄连杆机构习题':{
-                                        style:{
-                                        },
-                                        appear:true,
-                                    },
-                                },
-                                info:{
-                                }
-                            },
-                        ],
-                        '双曲柄机构组合':[
-                            {
-                                objects:{
-                                    '双曲柄机构组习题':{
-                                        style:{
-                                        },
-                                        appear:true,
-                                    },
-                                },
-                                info:{
-                                }
-                            },
-                        ],
-                        '平行双曲柄机构组合':[
-                            {
-                                objects:{
-                                    '平行双曲柄机构习题':{
-                                        style:{
-                                        },
-                                        appear:true,
-                                    },
-                                },
-                                info:{
-                                }
-                            },
-                        ],
-                        '反向双曲柄机构组合':[
-                            {
-                                objects:{
-                                    '反向双曲柄机构习题':{
-                                        style:{
-                                        },
-                                        appear:true,
-                                    },
-                                },
-                                info:{
-                                }
-                            },
-                        ],
                     },
                     info:{
                     }
